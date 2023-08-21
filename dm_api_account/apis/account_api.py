@@ -77,11 +77,10 @@ class AccountApi:
         )
         return response
 
-    def put_v1_account_token(self):
+    def put_v1_account_token(self, token):
         '''
         Activate registered user
         '''
-        token = '123'
 
         response = self.session.put(
             url=f"{self.host}/v1/account/{token}",

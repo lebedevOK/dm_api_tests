@@ -1,10 +1,11 @@
 import requests
 from data_for_test.urls import Urls
 
-'''Activate registered user'''
-def put_v1_account_token():
-  token = '123'
-  url = f"{Urls.url_base}/v1/account/{token}"
+def del_v1_account_login():
+  '''
+  Logout as current user
+  '''
+  url = f"{Urls.url_base}/v1/account/login"
 
   headers = {
     'X-Dm-Auth-Token': '<string>',
@@ -13,9 +14,8 @@ def put_v1_account_token():
   }
 
   response = requests.request(
-    method="PUT",
+    method="DELETE",
     url=url,
     headers=headers
   )
-
-  print(response.text)
+  return response

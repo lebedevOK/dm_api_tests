@@ -7,6 +7,7 @@ from ..models.registration_model import registration_model
 from ..models.reset_password import reset_password
 from requests import session
 
+
 class AccountApi:
     def __init__(self, host, headers=None):
         self.host = host
@@ -19,9 +20,6 @@ class AccountApi:
         Register new user
         :return:
         """
-        # непонятно, надо или нет тут вызывать функцию registration_model()?
-        # в registration_model.py нет самостоятельного json'а, лежит эта функция:
-        registration_model()
         response = self.session.post(
             url=f'{self.host}/v1/account',
             json=json,
@@ -29,13 +27,14 @@ class AccountApi:
         )
         return response
 
-    def get_v1_account(self):
+    def get_v1_account(self, **kwargs):
         '''
         Get current user
         '''
 
         response = self.session.get(
             url=f"{self.host}/v1/account",
+            **kwargs
         )
         return response
 
@@ -51,6 +50,7 @@ class AccountApi:
             **kwargs
         )
         return response
+
     def put_v1_account_email(self, json: change_email, **kwargs) -> Response:
         '''
         :param json change_email
@@ -77,17 +77,13 @@ class AccountApi:
         )
         return response
 
-    def put_v1_account_token(self, token):
+    def put_v1_account_token(self, token, **kwargs):
         '''
         Activate registered user
         '''
 
         response = self.session.put(
             url=f"{self.host}/v1/account/{token}",
+            **kwargs
         )
         return response
-
-
-
-
-

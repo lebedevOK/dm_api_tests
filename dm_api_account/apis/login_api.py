@@ -24,23 +24,25 @@ class LoginApi:
         )
         return response
 
-    def del_v1_account_login(self):
+    def del_v1_account_login(self, **kwargs):
         '''
         Logout as current user
         '''
 
         response = self.session.delete(
             url=f"{self.host}/v1/account/login",
+            **kwargs
         )
         return response
 
-    def del_v1_account_login_all(self):
+    def del_v1_account_login_all(self, **kwargs):
         '''
         Logout from every device
         '''
 
         response = self.session.delete(
             url=f"{self.host}/v1/account/login/all",
+            **kwargs
         )
         return response
 
